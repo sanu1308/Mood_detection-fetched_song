@@ -13,8 +13,8 @@ function uploadFile(file){
         imagekit.upload({
             file:file.buffer,
             //fileName:'suraj-hua-song',
-            //fileName:(new mongoose.Types.ObjectId()).toString(),
-            //folder:'moody-audio'
+            fileName:(new mongoose.Types.ObjectId()).toString(),
+            folder:'moody-audio'
         },(error,result)=>{
             if(error){
                 reject(error);

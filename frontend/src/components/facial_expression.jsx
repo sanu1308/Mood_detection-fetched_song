@@ -1,9 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as faceapi from "face-api.js";
 import "./facial_expression.css";
+import axios from 'axios'
 
-function MoodDetector() {
+ function Facialexpression({setsongs}) {
   const videoRef = useRef(null);
+
   const [mood, setMood] = useState("Detecting...");
 
   useEffect(() => {
@@ -53,6 +55,13 @@ function MoodDetector() {
     );
 
     console.log(detectedMood);
+
+    axios.get(`http://localhost:3000/song?mood=${detectedMood}`)
+    .then((response)=>{
+      console.log(response.data)
+      setsongs(response.data.song);
+    })
+    
     setMood(detectedMood);
   };
 
@@ -77,4 +86,4 @@ function MoodDetector() {
   );
 }
 
-export default MoodDetector;
+export default Facialexpression;
